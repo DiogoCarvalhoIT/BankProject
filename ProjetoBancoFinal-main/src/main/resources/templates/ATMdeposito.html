@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multibanco - Depósito</title>
+  <link rel="icon" type="x-icon" href="https://e7.pngegg.com/pngimages/19/546/png-clipart-white-bank-illustration-online-banking-finance-icon-white-bank-building-building-black-white.png">
+  <style>
+
+    body {
+      background-image: url('https://iili.io/HWGIsSI.png');
+      background-repeat: no-repeat;
+      background-size: 1920px 1000px;
+      overflow: hidden;
+    }
+
+
+    #montante {
+      position: absolute;
+      top: 470px;
+      left: 840px;
+      width: 300px;
+      height: 35px;
+      background-color: black;
+      font-size: 30px;
+      /*border-radius: 40px;*/
+      color: white;
+      border-width: 2px;
+      border-color: white;
+      text-align: center;
+    }
+
+    #montante::placeholder{
+      font-size: 20px;
+      text-align: center;
+      display: flex;
+      height: 25px;
+    }
+
+    .botaoConfirmar {
+      font-size: 45px;
+      position: absolute;
+      top: 780px;
+      left: 1000px;
+      height: 70px;
+      width: 250px;
+      border-radius: 10px;
+      color: black;
+      background-color: green;
+      font-weight: bold;
+    }
+
+    .botaoConfirmar:hover {
+      background-color: greenyellow;
+    }
+
+    .botaoAnular {
+      font-size: 45px;
+      position: absolute;
+      top: 780px;
+      left: 650px;
+      height: 70px;
+      width: 250px;
+      border-radius: 10px;
+      color: black;
+      background-color: #831313;
+      font-weight: bold;
+    }
+
+    .botaoAnular:hover {
+      background-color: #f82a2a;
+    }
+
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      padding: 20px;
+      background-color: red;
+      border: 3px solid black;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      height: 20px;
+      border-width: 2px;
+      border-radius: 5px;
+      width: 500px;
+      text-align: center;
+    }
+
+    .error-message{
+      color: white;
+      position: absolute;
+      top: 10000px;
+      left: 10000px;
+    }
+
+    .popup.show {
+      display: block;
+    }
+
+
+  </style>
+</head>
+<body>
+<div>
+  <!--<form action="/XXX" method="post"> -->
+
+  <form action="/realizarDepositoATM" method="post">
+    <input type="number" id="montante" name="montante" class="form-control" placeholder="" required>
+    <button type="submit" class="botaoConfirmar">Confirmar</button>
+  </form>
+
+  <button type="submit" class="botaoAnular" onclick="location.href='/voltarATMoperacoes'"  method="get">Anular</button>
+  <div id="popup-wrapper">
+    <p class="error-message" th:text="${error}"></p>
+  </div>
+
+  <!-- </form> -->
+</div>
+</body>
+<script>
+  var errorMessage = document.querySelector(".error-message");
+  if (errorMessage && errorMessage.textContent.trim() !== "") {
+    var popup = document.createElement("div");
+    var popupWrapper = document.createElement("div");
+    popupWrapper.setAttribute("id", "popup-wrapper");
+    popupWrapper.appendChild(popup);
+    popup.classList.add("popup");
+    popup.textContent = errorMessage.textContent;
+    document.body.appendChild(popupWrapper);
+    setTimeout(function() {
+      popup.classList.add("show");
+      setTimeout(function() {
+        popupWrapper.remove();
+      }, 3000);
+    }, 0);
+  }
+</script>
+</html>

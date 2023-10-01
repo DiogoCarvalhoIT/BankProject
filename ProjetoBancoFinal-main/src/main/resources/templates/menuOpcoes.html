@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Cliente</title>
+  <link rel="icon" type="x-icon" href="https://e7.pngegg.com/pngimages/19/546/png-clipart-white-bank-illustration-online-banking-finance-icon-white-bank-building-building-black-white.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+      background-image: url("https://img.rawpixel.com/private/static/images/website/2022-05/v944-bb-16-job598.jpg?w=1200&h=1200&dpr=1&fit=clip&crop=default&fm=jpg&q=75&vib=3&con=3&usm=15&cs=srgb&bg=F4F4F3&ixlib=js-2.2.1&s=846eb3fbf937d787169767fd6a98a4b8");
+      background-repeat: no-repeat;
+      background-size: 1920px 1000px;
+    }
+
+    .sidebar {
+      width: 23%;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-position: 19% 100%;
+      background-repeat: no-repeat;
+      background-size: 1920px 1000px;
+      box-shadow: 40px 0 40px -40px rgba(0,0,0, 300%);
+    }
+
+    .sidebar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("https://image.cnbcfm.com/api/v1/image/105536293-1540809808442gettyimages-1053344554.jpeg?v=1540809850&w=1600&h=900");
+      background-position: 19% 100%;
+      background-repeat: no-repeat;
+      background-size: 1920px 1000px;
+      filter: blur(2px);
+      z-index: -1;
+      box-shadow: 40px 0 40px -40px rgba(0,0,0, 300%);
+    }
+
+    .sidebar button {
+      margin: 15px 0 10px 0;
+      padding: 10px 40px;
+      border: none;
+      border-radius: 4px;
+      background-color: darkgreen;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      filter: none;
+      width: 320px;
+      font-weight: bold;
+    }
+
+    .sidebar button.sair {
+      margin-top: auto;
+      position: absolute;
+      top: 900px;
+    }
+
+    .sidebar button:hover {
+      background-color: limegreen;
+    }
+
+    /*.content {
+      margin: 0 auto;
+      width: 80%;
+      max-width: 800px;
+      padding: 50px 0;
+      text-align: center;
+    }*/
+
+    .content {
+      margin: 0 auto;
+      width: 75%;
+      max-width: 800px;
+      padding: 50px 0;
+      text-align: center;
+      margin-left: calc(23% + 300px); /* 23% is the width of the sidebar, and 50px is the padding on either side */
+      position: absolute;
+      top: 80px;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      background-color: white;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div class="sidebar">
+  <button onclick="location.href='/alterarInformacoes'"  method="get">ALTERAR INFORMAÇÕES</button>
+  <button onclick="location.href='/contasBancariasCliente'" method="get">ACEDER A CONTA</button>
+  <button onclick="location.href='/criarContaBancaria'" method="get">CRIAR CONTA BANCÁRIA</button>
+  <button class="sair" onclick="location.href='/logout'" method="get">SAIR</button>
+</div>
+<div class="content">
+  <h1>Bem-Vindo!</h1>
+  <p></p>
+  <h2>Informações Pessoais</h2>
+  <table>
+    <tr>
+      <th>Número de Identificação Fiscal</th>
+      <td th:text="${client.nif}"></td>
+    </tr>
+    <tr>
+      <th>Nome Completo</th>
+      <td th:text="${client.nomeCompleto}"></td>
+    </tr>
+    <tr>
+      <th>Senha</th>
+      <td th:text="${client.senha}"></td>
+    </tr>
+    <tr>
+      <th>Data de Nascimento</th>
+      <td th:text="${client.dataNascimento}"></td>
+    </tr>
+    <tr>
+      <th>Idade</th>
+      <td th:text="${client.idade}"></td>
+    </tr>
+    <tr>
+      <th>Telefone</th>
+      <td th:text="${client.telefone}"></td>
+    </tr>
+    <tr>
+      <th>Telemóvel</th>
+      <td th:text="${client.telemovel}"></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td th:text="${client.email}"></td>
+    </tr>
+    <tr>
+      <th>Profissão</th>
+      <td th:text="${client.profissao}"></td>
+    </tr>
+  </table>
+</body>
+</html>

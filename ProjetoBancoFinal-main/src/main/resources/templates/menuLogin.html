@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home Banking- Bem-Vindo!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Diogo Carvalho">
+        <meta name="description" content="Home Banking Application">
+        <link rel="icon" type="x-icon" href="Images/iconBank.png">
+        <link rel="stylesheet" href="creationForm.css">
+        <link rel="icon" type="x-icon" href="https://e7.pngegg.com/pngimages/19/546/png-clipart-white-bank-illustration-online-banking-finance-icon-white-bank-building-building-black-white.png">
+    </head>
+    <style>
+        body {
+    background-image: url("https://images.boersenmedien.com/images/ca0ccefa-09f2-4fca-af16-a9a4d5c6c79c.jpg");
+            background-repeat: no-repeat;
+            background-size: 1920px 1000px;
+    /*background-color: #f2f2f2;*/
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.box {
+  background-color: #fff;
+  border-radius: 10px;
+
+    position: relative;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.75);
+  top: 230px;
+    left: 100px;
+  max-width: 500px;
+  padding: 30px;
+    /*margin: 5% auto;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);*/
+}
+
+header1 {
+  color: black;
+  font-size: 36px;
+  font-weight: 1000;
+  text-align: center;
+  margin-bottom: 20px;
+    color: darkgreen;
+
+
+}
+
+form {
+  margin-top: 30px;
+}
+
+label {
+  color: #333;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+button[type="submit"] {
+  background-color: darkgreen;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 30px;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+    border-radius: 20px;
+    margin: 1px 0 10px 0
+}
+
+button[type="submit"]:hover {
+  background-color: limegreen;
+    border-color: darkgreen;
+    border-radius: 20px;
+    border-width: 30px;
+}
+
+        .login-form button.criarConta {
+            background-color: grey;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: auto;
+            padding: 11px;
+            text-align: center;
+            width: 55%;
+            border-radius: 20px;
+            margin-bottom: auto;
+        }
+
+        .login-form button.criarConta:hover {
+            background-color: lightgrey;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            padding: 20px;
+            background-color: red;
+            border: 3px solid black;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            height: 20px;
+            border-width: 2px;
+            border-radius: 5px;
+            width: 500px;
+            text-align: center;
+        }
+
+        .error-message{
+            color: white;
+        }
+
+        .popup.show {
+            display: block;
+        }
+
+    </style>
+    <body>
+        <div class="login-background-image"></div>
+        <div class="box">
+            <div class="login-form">
+                <header1>Login</header1>
+                <form action="/loginVerificacao" method="post">
+
+                    <label for="nif">Número de Indentificação Fiscal:</label>
+                    <input type="number" id="nif" name="nif" class="form-control" required>
+            
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" class="form-control" required>
+
+                    <button type="submit" onclick="">CONFIRMAR</button>
+                    <button class="criarConta" onclick="location.href='/createClient'"  method="get">CRIAR CONTA DE UTILIZADOR</button>
+
+                    <div id="popup-wrapper">
+                        <p class="error-message" th:text="${error}"></p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    <script>
+        var errorMessage = document.querySelector(".error-message");
+        if (errorMessage && errorMessage.textContent.trim() !== "") {
+            var popup = document.createElement("div");
+            var popupWrapper = document.createElement("div");
+            popupWrapper.setAttribute("id", "popup-wrapper");
+            popupWrapper.appendChild(popup);
+            popup.classList.add("popup");
+            popup.textContent = errorMessage.textContent;
+            document.body.appendChild(popupWrapper);
+            setTimeout(function() {
+                popup.classList.add("show");
+                setTimeout(function() {
+                    popupWrapper.remove();
+                }, 3000);
+            }, 0);
+        }
+    </script>
+    </body>
+</html>

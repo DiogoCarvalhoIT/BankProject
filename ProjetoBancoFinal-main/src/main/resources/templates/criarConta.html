@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Criar Conta Bancária</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Diogo Carvalho">
+        <meta name="description" content="Home Banking Application">
+        <link rel="stylesheet" href="creationForm.css">
+        <link rel="icon" type="x-icon" href="https://e7.pngegg.com/pngimages/19/546/png-clipart-white-bank-illustration-online-banking-finance-icon-white-bank-building-building-black-white.png">
+    </head>
+    <style>
+
+        html{
+            zoom: 140%
+        }
+        body {
+
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            background-image: url("https://img.rawpixel.com/private/static/images/website/2022-05/v944-bb-16-job598.jpg?w=1200&h=1200&dpr=1&fit=clip&crop=default&fm=jpg&q=75&vib=3&con=3&usm=15&cs=srgb&bg=F4F4F3&ixlib=js-2.2.1&s=846eb3fbf937d787169767fd6a98a4b8");
+            background-size: 1920px 1000px;
+            background-repeat: no-repeat;
+}
+
+        .login-form{
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            position: relative;
+            top: 180px;
+        }
+
+
+        header1 {
+            color: #333;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            top: 200px;
+            left: 440px;
+        }
+
+label {
+  color: #333;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+button[type="submit"] {
+    background-color: darkgreen;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    /* margin-top: 30px; */
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 15px;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border: none;
+    margin-left: 10px;
+}
+
+
+
+        button.voltarAtras {
+            top: 130.1px;
+            position: absolute;
+            background-color: darkgreen;
+            color: #ffffff;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            /* margin-left: 98px; */
+            margin-top: 20px;
+            margin: 0 auto;
+            height: 49px;
+            left: 320px;
+        }
+
+        button.voltarAtras:hover {
+            background-color: limegreen;
+        }
+
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            padding: 20px;
+            background-color: red;
+            border: 3px solid black;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            height: 20px;
+            border-width: 2px;
+            border-radius: 5px;
+            width: 500px;
+            text-align: center;
+        }
+
+        .error-message{
+            color: white;
+            position: absolute;
+            top: 10000px;
+            left: 10000px;
+        }
+
+        .popup.show {
+            display: block;
+        }
+
+button[type="submit"]:hover {
+  background-color: limegreen;
+}
+
+    </style>
+    <body>
+        <!-- <div class="box"> -->
+        <header1>ABRIR CONTA BANCÁRIA</header1>
+            <div class="login-form">
+                <!--<header1>Abrir Conta Bancária</header1>-->
+                <form action="/criarNovaConta" method="post">
+
+                    <label for="saldoConta">Saldo Conta:</label>
+                    <input type="number" id="saldoConta" name="saldoConta" class="form-control" required>
+
+
+                    <div id="popup-wrapper">
+                        <p class="error-message" th:text="${error}"></p>
+                    </div>
+
+                    <button type="submit">CONFIRMAR</button>
+                </form>
+                <button class="voltarAtras" onclick="location.href='/voltarDashboardCliente'" method="get">VOLTAR ATRÁS</button>
+            </div>
+    <script>
+
+        var errorMessage = document.querySelector(".error-message");
+        if (errorMessage && errorMessage.textContent.trim() !== "") {
+            var popup = document.createElement("div");
+            var popupWrapper = document.createElement("div");
+            popupWrapper.setAttribute("id", "popup-wrapper");
+            popupWrapper.appendChild(popup);
+            popup.classList.add("popup");
+            popup.textContent = errorMessage.textContent;
+            document.body.appendChild(popupWrapper);
+            setTimeout(function() {
+                popup.classList.add("show");
+                setTimeout(function() {
+                    popupWrapper.remove();
+                }, 3000);
+            }, 0);
+        }
+    </script>
+    </body>
+</html>

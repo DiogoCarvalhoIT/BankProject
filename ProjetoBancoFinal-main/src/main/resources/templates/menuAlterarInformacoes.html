@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alterar Informações</title>
+  <link rel="icon" type="x-icon" href="https://e7.pngegg.com/pngimages/19/546/png-clipart-white-bank-illustration-online-banking-finance-icon-white-bank-building-building-black-white.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      background-image: url("https://img.rawpixel.com/private/static/images/website/2022-05/v944-bb-16-job598.jpg?w=1200&h=1200&dpr=1&fit=clip&crop=default&fm=jpg&q=75&vib=3&con=3&usm=15&cs=srgb&bg=F4F4F3&ixlib=js-2.2.1&s=846eb3fbf937d787169767fd6a98a4b8");
+      background-size: 1920px 1000px;
+      background-repeat: no-repeat;
+    }
+
+    h1 {
+      color: #333333;
+      text-align: center;
+      margin-top: 30px;
+      position: relative;
+      top: 70px;
+      font-weight: bold;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      position: relative;
+      top: 100px;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    input[type="submit"] {
+      background-color: darkgreen;
+      color: #ffffff;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 20px;
+
+    }
+
+    input[type="submit"]:hover {
+      background-color: limegreen;
+    }
+
+    button.voltarAtras {
+      background-color: darkgreen;
+      color: #ffffff;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: 98px;
+
+    }
+
+    button.voltarAtras:hover {
+      background-color: limegreen;
+    }
+
+  </style>
+</head>
+<body>
+<h1>ALTERAÇÃO DE INFORMAÇÕES PESSOAIS</h1>
+
+<form action="/updateUser", method="post">
+  <label for="nome-completo">Nome Completo</label>
+  <input type="text" id="nome-completo" name="nome-completo" th:placeholder="${client.nomeCompleto}"  >
+
+  <label for="senha">Senha</label>
+  <input type="password" id="senha" name="senha" th:placeholder="${client.senha}">
+
+  <label for="telefone">Telefone</label>
+  <input type="text" id="telefone" name="telefone" th:placeholder="${client.telefone}">
+
+  <label for="telemovel">Telemóvel</label>
+  <input type="text" id="telemovel" name="telemovel" th:placeholder="${client.telemovel}">
+
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" th:placeholder="${client.email}">
+
+  <label for="profissao">Profissão</label>
+  <input type="text" id="profissao" name="profissao" th:placeholder="${client.profissao}">
+
+  <input type="submit" value="SALVAR ALTERAÇÕES">
+  <button class="voltarAtras" onclick="location.href='/voltarDashboardCliente'" method="get">VOLTAR ATRÁS</button>
+</form>
+</body>
+</html>

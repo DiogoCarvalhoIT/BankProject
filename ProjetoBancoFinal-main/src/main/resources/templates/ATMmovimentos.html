@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+     body {
+      background-image: url('https://i.imgur.com/bNP6hpQ.png');
+      background-repeat: no-repeat;
+      background-size: 1920px 1000px;
+    }
+
+
+        table {
+            border-collapse: collapse;
+            width: 800px;
+            /* max-height: 80px;
+            overflow-y: auto; */
+            margin: 330px auto 0;
+            margin-left: 567px;
+            font-size: 14px;
+              background-color: black;
+            color: white;
+            border-color: white;
+
+
+        }
+
+        thead, tbody {
+            display: block;
+            background-color: black;
+        }
+
+
+         tbody {
+           max-height: 240px; /* Set max-height for the table */
+           overflow-y: auto; /* Add vertical scrollbar */
+           background-color: black;
+
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border: 1px solid #ddd;
+            width: 20%; /* Set the width for each column */
+            background-color: black;
+        }
+
+        th {
+            background-color: black;
+        }
+
+        tr:nth-child(even) {
+            background-color: black;
+        }
+
+        tr:hover {
+            background-color: black;
+        }
+
+        tbody::-webkit-scrollbar {
+            display: none;
+        }
+
+       .botaoVoltarMenu {
+      font-size: 45px;
+      position: absolute;
+      top: 780px;
+      left: 800px;
+      height: 70px;
+      width: 350px;
+      border-radius: 10px;
+      color: black;
+      background-color: #ffc266;
+      font-weight: bold;
+    }
+
+    .botaoVoltarMenu:hover {
+      background-color: #ff9900;
+    }
+
+
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Numero de Conta</th>
+        <th>Numero de Cartao</th>
+        <th>Tipo de Operacao</th>
+        <th>Montante</th>
+        <th>Destinatario</th>
+        <th>Data da Transacao</th>
+    </tr>
+    </thead>
+    <tbody>
+    <form th:action="@{/displayMovimentosCartao}" method="post">
+        <tr th:each="Transacao: ${listaTransacoesAtm}">
+            <td th:text="${Transacao.numeroConta}"></td>
+            <td th:text="${Transacao.numeroCartao}"></td>
+            <td th:text="${Transacao.tipoOperacao}"></td>
+            <td th:text="${Transacao.montante}"></td>
+            <td th:text="${Transacao.destinatario}"></td>
+            <td th:text="${Transacao.momentoTransacao}"></td>
+        </tr>
+    </form>
+    </tbody>
+</table>
+
+    <button type="submit" class="botaoVoltarMenu" onclick="location.href='/voltarATMoperacoes'"  method="get">Voltar ao Menu</button>
+
+</body>
+</html>

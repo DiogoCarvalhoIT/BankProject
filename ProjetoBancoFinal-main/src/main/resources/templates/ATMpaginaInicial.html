@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multibanco - Bem-Vindo!</title>
+  <link rel="icon" type="x-icon" href="https://e7.pngegg.com/pngimages/19/546/png-clipart-white-bank-illustration-online-banking-finance-icon-white-bank-building-building-black-white.png">
+
+  <style>
+    body {
+      background-image: url('https://iili.io/HWGzJs4.png');
+      background-repeat: no-repeat;
+      background-size: 1920px 1000px;
+      overflow: hidden;
+    }
+
+    #numeroCartao {
+      position: absolute;
+      top: 820px;
+      left: 70px;
+      width: 500px;
+      height: 100px;
+      background-color: dodgerblue;
+      font-size: 50px;
+      border-radius: 40px;
+      color: white;
+    }
+
+    #pin {
+      position: absolute;
+      top: 820px;
+      left: 800px;
+      width: 500px;
+      height: 100px;
+      background-color: dodgerblue;
+      font-size: 50px;
+      border-radius: 40px;
+      color: white;
+    }
+
+  button[type="submit"] {
+    position: relative;
+    top: 809px;
+    left: 1500px;
+
+    border-radius: 200px;
+    height: 120px;
+    width: 300px;
+    font-size: 50px;
+    font-family: Arial;
+    font-weight: bold;
+    border: solid dodgerblue;
+    }
+
+    button[type="submit"]:hover, button[type="submit"]:focus, button[type="submit"]:active {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+      background-color: green;
+      color: white;
+      border: greenyellow;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      padding: 20px;
+      background-color: red;
+      border: 3px solid black;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      height: 20px;
+      border-width: 2px;
+      border-radius: 5px;
+      width: 500px;
+      text-align: center;
+    }
+
+    .error-message{
+      color: white;
+      position: absolute;
+      top: 10000px;
+      left: 10000px;
+    }
+
+    .popup.show {
+      display: block;
+    }
+
+
+  </style>
+
+</head>
+<body>
+<div>
+  <!--<img src='https://iili.io/HWGzJs4.png' width="1920" height="1000">-->
+  <form action="/atmVerificao" method="post">
+
+  <input type="number" id="numeroCartao" name="numeroCartao" class="form-control"  th:placehoder="pin"  required>
+  <input type="password" id="pin" name="pin" class="form-control" required>
+
+  <button type="submit" onclick="">Aceder</button>
+    <div id="popup-wrapper">
+      <p class="error-message" th:text="${error}"></p>
+    </div>
+
+</form>
+</div>
+<script>
+  var errorMessage = document.querySelector(".error-message");
+  if (errorMessage && errorMessage.textContent.trim() !== "") {
+    var popup = document.createElement("div");
+    var popupWrapper = document.createElement("div");
+    popupWrapper.setAttribute("id", "popup-wrapper");
+    popupWrapper.appendChild(popup);
+    popup.classList.add("popup");
+    popup.textContent = errorMessage.textContent;
+    document.body.appendChild(popupWrapper);
+    setTimeout(function() {
+      popup.classList.add("show");
+      setTimeout(function() {
+        popupWrapper.remove();
+      }, 3000);
+    }, 0);
+  }
+</script>
+</body>
+</html>
